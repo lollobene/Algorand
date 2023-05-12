@@ -1,0 +1,73 @@
+#pragma version 6
+txn NumAppArgs
+int 0
+==
+bnz main_l4
+txna ApplicationArgs 0
+method "send_algo(account,uint64)void"
+==
+bnz main_l3
+err
+main_l3:
+txn OnCompletion
+int NoOp
+==
+txn ApplicationID
+int 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+int 0
+getbyte
+store 0
+txna ApplicationArgs 2
+btoi
+store 1
+load 0
+load 1
+callsub sendalgo_0
+int 1
+return
+main_l4:
+txn OnCompletion
+int NoOp
+==
+bnz main_l6
+err
+main_l6:
+txn ApplicationID
+int 0
+==
+assert
+int 1
+return
+
+// send_algo
+sendalgo_0:
+store 3
+store 2
+gtxn 0 TypeEnum
+int pay
+==
+gtxn 0 Amount
+load 3
+==
+&&
+gtxn 0 Receiver
+global CurrentApplicationAddress
+==
+&&
+assert
+itxn_begin
+int 0
+itxn_field Fee
+int pay
+itxn_field TypeEnum
+load 2
+txnas Accounts
+itxn_field Receiver
+load 3
+itxn_field Amount
+itxn_submit
+retsub
