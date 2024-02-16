@@ -1,0 +1,62 @@
+#pragma version 8
+intcblock 0 1
+txn NumAppArgs
+intc_0 // 0
+==
+bnz main_l4
+txna ApplicationArgs 0
+pushbytes 0x17457a86 // "create_asset(string)string"
+==
+bnz main_l3
+err
+main_l3:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+callsub createasset_0
+store 0
+pushbytes 0x151f7c75 // 0x151f7c75
+load 0
+concat
+log
+intc_1 // 1
+return
+main_l4:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l6
+err
+main_l6:
+txn ApplicationID
+intc_0 // 0
+==
+assert
+intc_1 // 1
+return
+
+// create_asset
+createasset_0:
+proto 1 1
+pushbytes 0x // ""
+itxn_begin
+intc_0 // 0
+itxn_field Fee
+pushint 3 // acfg
+itxn_field TypeEnum
+pushint 1000 // 1000
+itxn_field ConfigAssetTotal
+intc_1 // 1
+itxn_field ConfigAssetDecimals
+intc_1 // 1
+itxn_field ConfigAssetDefaultFrozen
+pushbytes 0x4153534554 // "ASSET"
+itxn_field ConfigAssetUnitName
+itxn_submit
+retsub

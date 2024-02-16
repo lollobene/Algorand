@@ -1,0 +1,44 @@
+{
+    "name": "S",
+    "methods": [
+        {
+            "name": "set",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "new_val"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get",
+            "args": [],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "update",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "new_val"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "opt_in",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        }
+    ],
+    "networks": {}
+}

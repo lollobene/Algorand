@@ -1,0 +1,225 @@
+#pragma version 8
+txn ApplicationID
+int 0
+==
+bnz main_l24
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l23
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l22
+txn OnCompletion
+int CloseOut
+==
+bnz main_l21
+txn OnCompletion
+int OptIn
+==
+bnz main_l20
+txna ApplicationArgs 0
+byte "join"
+==
+bnz main_l11
+txna ApplicationArgs 0
+byte "winner"
+==
+bnz main_l10
+txna ApplicationArgs 0
+byte "timeout"
+==
+bnz main_l9
+err
+main_l9:
+global LatestTimestamp
+byte "Deadline"
+app_global_get
+>
+assert
+byte "Player1Bet"
+app_global_get
+int 0
+!=
+byte "Player2Bet"
+app_global_get
+int 0
+!=
+&&
+assert
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "Stake"
+app_global_get
+itxn_field Amount
+byte "Player1"
+app_global_get
+itxn_field Receiver
+itxn_submit
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "Stake"
+app_global_get
+itxn_field Amount
+byte "Player2"
+app_global_get
+itxn_field Receiver
+itxn_submit
+int 1
+return
+main_l10:
+txn Sender
+byte "Oracle"
+app_global_get
+==
+assert
+byte "Player1Bet"
+app_global_get
+int 0
+!=
+byte "Player2Bet"
+app_global_get
+int 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+byte "Player1"
+app_global_get
+==
+txna ApplicationArgs 1
+byte "Player2"
+app_global_get
+==
+||
+assert
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "Stake"
+app_global_get
+int 2
+*
+itxn_field Amount
+txna ApplicationArgs 1
+itxn_field Receiver
+itxn_submit
+int 1
+return
+main_l11:
+txn Sender
+byte "Player1"
+app_global_get
+==
+txn Sender
+byte "Player2"
+app_global_get
+==
+||
+assert
+txn GroupIndex
+int 0
+==
+gtxn 1 Sender
+txn Sender
+==
+&&
+gtxn 1 TypeEnum
+int pay
+==
+&&
+gtxn 1 Amount
+byte "Stake"
+app_global_get
+==
+&&
+gtxn 1 Receiver
+global CurrentApplicationAddress
+==
+&&
+assert
+txn Sender
+byte "Player1"
+app_global_get
+==
+bnz main_l17
+txn Sender
+byte "Player2"
+app_global_get
+==
+bnz main_l14
+int 0
+return
+main_l14:
+byte "Player2Bet"
+app_global_get
+int 0
+!=
+bnz main_l16
+byte "Player2Bet"
+int 1
+app_global_put
+int 1
+return
+main_l16:
+int 0
+return
+main_l17:
+byte "Player1Bet"
+app_global_get
+int 0
+!=
+bnz main_l19
+byte "Player1Bet"
+int 1
+app_global_put
+int 1
+return
+main_l19:
+int 0
+return
+main_l20:
+int 0
+return
+main_l21:
+int 0
+return
+main_l22:
+int 0
+return
+main_l23:
+int 0
+return
+main_l24:
+txn NumAppArgs
+int 4
+==
+assert
+byte "Player1"
+txna ApplicationArgs 0
+app_global_put
+byte "Player2"
+txna ApplicationArgs 1
+app_global_put
+byte "Oracle"
+txna ApplicationArgs 2
+app_global_put
+byte "Deadline"
+txna ApplicationArgs 3
+btoi
+app_global_put
+byte "Stake"
+txna ApplicationArgs 4
+btoi
+app_global_put
+byte "Player1Bet"
+int 0
+app_global_put
+byte "Player2Bet"
+int 0
+app_global_put
+int 1
+return

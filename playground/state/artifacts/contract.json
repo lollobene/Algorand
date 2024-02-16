@@ -1,0 +1,164 @@
+{
+    "name": "StateExample",
+    "methods": [
+        {
+            "name": "create",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "opt_in",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "write_local_blob",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "read_local_blob",
+            "args": [],
+            "returns": {
+                "type": "byte[]"
+            }
+        },
+        {
+            "name": "write_global_blob",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "read_global_blob",
+            "args": [],
+            "returns": {
+                "type": "byte[]"
+            }
+        },
+        {
+            "name": "set_global_state_val",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_global_state_val",
+            "args": [],
+            "returns": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "set_reserved_global_state_val",
+            "args": [
+                {
+                    "type": "uint8",
+                    "name": "k"
+                },
+                {
+                    "type": "uint64",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_reserved_global_state_val",
+            "args": [
+                {
+                    "type": "uint8",
+                    "name": "k"
+                }
+            ],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "set_local_state_val",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "incr_local_state_val",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_local_state_val",
+            "args": [],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "set_reserved_local_state_val",
+            "args": [
+                {
+                    "type": "uint8",
+                    "name": "k"
+                },
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_reserved_local_state_val",
+            "args": [
+                {
+                    "type": "uint8",
+                    "name": "k"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            }
+        }
+    ],
+    "networks": {}
+}

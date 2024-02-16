@@ -1,0 +1,25 @@
+{
+    "name": "StateExample",
+    "methods": [
+        {
+            "name": "set_global_state_val",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_global_state_val",
+            "args": [],
+            "returns": {
+                "type": "string"
+            }
+        }
+    ],
+    "networks": {}
+}

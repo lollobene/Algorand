@@ -1,0 +1,54 @@
+{
+    "name": "Auction",
+    "methods": [
+        {
+            "name": "create",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "bid",
+            "args": [
+                {
+                    "type": "pay",
+                    "name": "bidPayment"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "bid2",
+            "args": [
+                {
+                    "type": "pay",
+                    "name": "bidPayment2"
+                },
+                {
+                    "type": "pay",
+                    "name": "bidPayment3"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "double_val",
+            "args": [
+                {
+                    "type": "uint64",
+                    "name": "value"
+                }
+            ],
+            "returns": {
+                "type": "uint64"
+            }
+        }
+    ],
+    "networks": {},
+    "desc": "Auction App"
+}

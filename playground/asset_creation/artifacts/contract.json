@@ -1,0 +1,19 @@
+{
+    "name": "AssetCreation",
+    "methods": [
+        {
+            "name": "create_asset",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            },
+            "desc": "echos the string back unchanged"
+        }
+    ],
+    "networks": {}
+}
